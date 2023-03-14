@@ -1,0 +1,25 @@
+<mat-spinner *ngIf="!requestDone"></mat-spinner>
+
+<form *ngIf="requestDone" [formGroup]="loginForm">
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Username</mat-label>
+            <input [maxlength]="maxLengthUsername" id="username" name="username" formControlName="username" matInput>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input [maxLength]="maxLengthPassword" id="password" name="password" formControlName="password" matInput
+                [type]="hide ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+
+    <button class="button" (click)="onSubmit()" type="submit" mat-raised-button>Sign in</button>
+</form>
+
+<a [routerLink]="['/register']">Register</a>

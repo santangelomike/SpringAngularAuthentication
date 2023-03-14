@@ -1,0 +1,40 @@
+<form [formGroup]="registerForm">
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Username</mat-label>
+            <input id="username" name="username" formControlName="username" matInput>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input id="password" name="password" formControlName="password" matInput
+                [type]="hidePassword ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hidePassword">
+                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Confirm password</mat-label>
+            <input id="passwordConfirm" name="passwordConfirm" formControlName="passwordConfirm" matInput
+                [type]="hidePasswordConfirm ? 'password' : 'text'">
+            <button mat-icon-button matSuffix (click)="hidePasswordConfirm = !hidePasswordConfirm" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hidePasswordConfirm">
+                <mat-icon>{{hidePasswordConfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+    </div>
+    
+    <div *ngIf="registerForm.errors?.['passwordMatch'] === false && (registerForm.touched || registerForm.dirty)">
+        Passwords must match.
+    </div>
+
+    <div *ngIf="username?.errors?.['required']">
+        Username is required.
+    </div>
+
+    <button class="button" (click)="onSubmit()" type="submit" [disabled]="!registerForm.valid" mat-raised-button>Register</button>
+</form>

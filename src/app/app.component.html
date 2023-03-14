@@ -1,0 +1,11 @@
+<mat-sidenav-container class="container" fullscreen>
+  <mat-sidenav mode="side" opened>
+    <mat-nav-list>
+      <a *ngIf="!authenticated" routerLink="login" mat-list-item>Login</a>
+      <a *ngIf="authenticated" (click)="logout()" mat-list-item>Logout</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
